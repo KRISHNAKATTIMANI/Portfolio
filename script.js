@@ -304,17 +304,19 @@ function showNotification(message, type = 'info') {
     // Style the notification
     notification.style.cssText = `
         position: fixed;
-        top: 20px;
-        right: 20px;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
         padding: 15px 20px;
         border-radius: 8px;
         color: white;
         font-weight: 500;
         z-index: 10000;
-        transform: translateX(400px);
-        transition: transform 0.3s ease;
+        transition: top 0.5s ease;
         max-width: 300px;
         word-wrap: break-word;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     `;
     
     // Set color based on type
@@ -333,18 +335,18 @@ function showNotification(message, type = 'info') {
     document.body.appendChild(notification);
     
     // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
+    requestAnimationFrame(() => {
+        notification.style.top = '20px';
+    });
     
     // Auto remove after 4 seconds
     setTimeout(() => {
-        notification.style.transform = 'translateX(400px)';
+        notification.style.top = '-100px';
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.remove();
             }
-        }, 300);
+        }, 500);
     }, 4000);
 }
 
