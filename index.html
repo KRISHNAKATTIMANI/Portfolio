@@ -1,0 +1,429 @@
+<!DOCTYPE html>    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function() {
+            // Initialize EmailJS with the correct public key
+            emailjs.init({
+                publicKey: 'm6V-Q7RXmyfHBwoD7'
+            });
+            console.log('EmailJS Initialized');
+        })();
+    </script> lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucius Meshach - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Portfolio.</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="home">
+        <div class="home-container">
+            <div class="home-content">
+                <h1 class="home-title">KRISHNA</h1>
+                <h2 class="home-subtitle">Programmer | <span class="highlight">Developer</span></h2>
+                <p class="home-description">
+                    Hi, I’m a software developer passionate about clean code and problem-solving.
+                    I enjoy building applications that are efficient, user-friendly, and impactful.
+                    Always eager to learn and grow, I thrive in meaningful collaborations.
+                </p>
+                <div class="home-buttons">
+                    <button class="btn-primary">Download Resume</button>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="home-image">
+                <div class="image-container">
+                    <img src="avatar.png" alt="Developer Profile" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know me better</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>I'm a Creative Professional</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.
+                        Voluptatibus, expedita. Aliquid, accusamus dolore! Ducimus, neque. Autem error, neque
+                        voluptatibus, laborum, hic dolore assumenda et dignissimos ex eum natus totam.
+                    </p>
+                    <div class="skills">
+                        <div class="skill">
+                            <span class="skill-name">Web Development</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span class="skill-name">Content Creation</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span class="skill-name">Video Editing</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h4>50+</h4>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="stat">
+                        <h4>100K+</h4>
+                        <p>YouTube Subscribers</p>
+                    </div>
+                    <div class="stat">
+                        <h4>3+</h4>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Projects</h2>
+                <p class="section-subtitle">Check out my latest work</p>
+            </div>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Lung Cancer Detection System</h3>
+                        <p class="project-description">
+                            Created an ML model to detect lung cancer from images with 89% accuracy,
+                            identifying different stages using classification algorithms.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">PYTHON</span>
+                            <span class="tech-tag">TENSORFLOW</span>
+                            <span class="tech-tag">SCIKIT-LEARN</span>
+                            <span class="tech-tag">OPENCV</span>
+                            <span class="tech-tag">FLASK</span>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop&crop=center"
+                            alt="Lung Cancer Detection System">
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Stock Price Prediction App</h3>
+                        <p class="project-description">
+                            Developed a machine learning application that predicts stock prices using LSTM neural
+                            networks
+                            with real-time data visualization and trading insights.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">PYTHON</span>
+                            <span class="tech-tag">LSTM</span>
+                            <span class="tech-tag">PANDAS</span>
+                            <span class="tech-tag">MATPLOTLIB</span>
+                            <span class="tech-tag">STREAMLIT</span>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1611974789855-b2f2be23c9e4?w=400&h=300&fit=crop&crop=center"
+                            alt="Stock Price Prediction">
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">E-Commerce Flutter App</h3>
+                        <p class="project-description">
+                            Built a complete e-commerce mobile application with Firebase backend,
+                            payment integration, and real-time inventory management system.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">FLUTTER</span>
+                            <span class="tech-tag">DART</span>
+                            <span class="tech-tag">FIREBASE</span>
+                            <span class="tech-tag">STRIPE</span>
+                            <span class="tech-tag">NODEJS</span>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&crop=center"
+                            alt="E-Commerce App">
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p class="project-description">
+                            Designed and developed a responsive portfolio website with modern UI/UX,
+                            smooth animations, and optimized performance across all devices.
+                        </p>
+                        <div class="project-technologies">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JAVASCRIPT</span>
+                            <span class="tech-tag">RESPONSIVE</span>
+                            <span class="tech-tag">ANIMATIONS</span>
+                        </div>
+                    </div>
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&crop=center"
+                            alt="Portfolio Website">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Skills</h2>
+                <p class="section-subtitle">Technologies and tools I work with</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">Java</div>
+                <div class="skill-tag">SQL</div>
+                <div class="skill-tag">C++</div>
+                <!-- <div class="skill-tag">Flutter</div> -->
+                <div class="skill-tag">Firebase</div>
+                <!-- <div class="skill-tag">TensorFlow</div> -->
+                <div class="skill-tag">Data Analysis</div>
+                <!-- <div class="skill-tag">Scikit-learn</div> -->
+                <!-- <div class="skill-tag">Algorithmic Trading</div> -->
+                <div class="skill-tag">Quantitative Analysis</div>
+                <div class="skill-tag">Risk Management</div>
+                <!-- <div class="skill-tag">MATLAB</div> -->
+                <div class="skill-tag">Git</div>
+                <div class="skill-tag">GitHub</div>
+                <!-- <div class="skill-tag">Image Optimization Techniques</div> -->
+                <div class="skill-tag">Team Leadership</div>
+                <div class="skill-tag">Problem-Solving</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">Academic background and qualifications</p>
+            </div>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div class="education-content">
+                        <div class="education-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="education-details">
+                            <h3>Bachelor of Education</h3>
+                            <h4>Computer Science & Engineering</h4>
+                            <p class="institution">Visveshwaraya Technological University</p>
+                            <p class="duration">2023 - 2027</p>
+                            <p class="description">Relevant coursework: Data Structures, Algorithms, Software
+                                Engineering, Database Management Systems.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <div class="education-content">
+                        <div class="education-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="education-details">
+                            <h3>Higher Secondary Education</h3>
+                            <h4>Science Stream (PCMB)</h4>
+                            <p class="institution">Jawahar Navodaya Vidyalaya, Dharwad</p>
+                            <p class="duration">2021 - 2023</p>
+                            <p class="description">Focused on Physics, Chemistry, Mathematics, and Biology with strong
+                                foundation in analytical thinking.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="education-item">
+                    <div class="education-content">
+                        <div class="education-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="education-details">
+                            <h3>Secondary School Education</h3>
+                            <h4></h4>
+                            <p class="institution">Jawahar Navodaya Vidyalaya, Tumkur</p>
+                            <p class="duration">2019 - 2021</p>
+                            <p class="description">Focused on Physics, Chemistry, Mathematics, History, Languages and Biology with strong
+                                foundation in analytical thinking.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Experience</h2>
+                <p class="section-subtitle">Professional journey and achievements</p>
+            </div>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025-2025</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="timeline-details">
+                            <h3>AI Model Reviewer Intern</h3>
+                            <h4>Examdojo(Remote)</h4>
+                            <p>Contributing to Examdojo EdTech platform by reviewing and solving AI-generated questions
+                                in subjects like math and physics. Helping improve the accuracy and reliability of their
+                                educational AI systems.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025-2025</div>
+                        <div class="timeline-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="timeline-details">
+                            <h3>Software Development Engineer Intern</h3>
+                            <h4>Bluestock Fintech(Remote)</h4>
+                            <p>Contributing to the development of fintech solutions at Bluestock Fintech as a SDE
+                                Intern, focusing on building scalable and efficient software in a dynamic, real-world
+                                environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's work together</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>krishnamb90@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Karnataka, India</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Krishna. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

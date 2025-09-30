@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Messages</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px;
+        }
+        .message-card {
+            background: var(--darker-bg);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .message-info span {
+            color: var(--text-muted);
+            margin-right: 15px;
+        }
+        .message-content {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            background: var(--darker-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .login-form input {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--dark-bg);
+            color: var(--text-primary);
+        }
+        .error-message {
+            color: #e53e3e;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginSection" class="login-container">
+        <h2 class="section-title">Admin Login</h2>
+        <form id="loginForm" class="login-form">
+            <input type="email" id="adminEmail" placeholder="Email" required>
+            <input type="password" id="adminPassword" placeholder="Password" required>
+            <button type="submit" class="btn-primary">Login</button>
+            <p id="loginError" class="error-message"></p>
+        </form>
+    </div>
+
+    <div id="messagesSection" class="admin-container" style="display: none;">
+        <div class="section-header">
+            <h2 class="section-title">Messages</h2>
+            <button id="logoutBtn" class="btn-primary">Logout</button>
+        </div>
+        <div id="messagesList"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script>
+        // DOM Elements
+        const loginSection = document.getElementById('loginSection');
+        const messagesSection = document.getElementById('messagesSection');
+        const loginForm = document.getElementById('loginForm');
+        const messagesList = document.getElementById('messagesList');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Check auth state
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                loginSection.style.display = 'none';
+                messagesSection.style.display = 'block';
+                loadMessages();
+            } else {
+                loginSection.style.display = 'block';
+                messagesSection.style.display = 'none';
+            }
+        });
+
+        // Login form handler
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                loginError.textContent = '';
+            } catch (error) {
+                loginError.textContent = error.message;
+            }
+        });
+
+        // Logout handler
+        logoutBtn.addEventListener('click', () => {
+            auth.signOut();
+        });
+
+        // Load messages from Firestore
+        function loadMessages() {
+            db.collection('messages')
+                .orderBy('timestamp', 'desc')
+                .onSnapshot(snapshot => {
+                    messagesList.innerHTML = '';
+                    snapshot.forEach(doc => {
+                        const message = doc.data();
+                        const messageCard = `
+                            <div class="message-card">
+                                <div class="message-header">
+                                    <div class="message-info">
+                                        <span><strong>From:</strong> ${message.name}</span>
+                                        <span><strong>Email:</strong> ${message.email}</span>
+                                        <span><strong>Date:</strong> ${message.timestamp.toDate().toLocaleString()}</span>
+                                    </div>
+                                </div>
+                                <h3 class="project-title">${message.subject}</h3>
+                                <p class="message-content">${message.message}</p>
+                            </div>
+                        `;
+                        messagesList.innerHTML += messageCard;
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
